@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Property {
+	
 	@Value("${login.url}")
 	public String LOGIN_URL;
 	
@@ -31,4 +32,11 @@ public class Property {
 	
 	@Value("${logout.url.success}")
 	public String LOGOUT_SUCCESS_URL;
+	
+	@Value("${socket.io.host}")
+	public String SOCKET_IO_HOST;
+	
+	@Value("${socket.io.port}")
+	public Integer SOCKET_IO_PORT;
+	
 }

@@ -1,1 +1,23 @@
-<h1>User</h1>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User Page | Spring</title>
+</head>
+<body>
+	<h1>Hello, <span th:text="${#authentication.name}"></span></h1>
+	
+	<span id="userId" th:text="${#authentication.principal.id}"></span>
+	
+	<script src="/static/js/socket.io/socket.io.js"></script>
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script>
+    	var socket =  io.connect('http://localhost:3000');
+
+    	socket.on('connect', function(){
+    		console.log('connected to server', socket.id);
+			socket.emit('login', $('#userId').text());
+		});   
+		
+    </script>
+</body>
+</html>

@@ -14,17 +14,15 @@ import org.springframework.stereotype.Component;
 import com.phearun.configuration.component.Property;
 
 @Component
-public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
+public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
 	@Autowired
 	private Property prop;
-	
+
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		
-		System.out.println("=>Logout Succes!");
-		
+
 		response.sendRedirect(prop.LOGOUT_SUCCESS_URL);
 	}
 

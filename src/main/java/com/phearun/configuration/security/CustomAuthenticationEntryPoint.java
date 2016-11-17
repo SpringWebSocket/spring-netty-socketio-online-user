@@ -27,8 +27,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint{
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException auth)
 			throws IOException, ServletException {
 		
-		//TODO: set session for remember user previous request url
-		request.getSession().setAttribute(prop.PREV_REQUEST_URL, request.getRequestURL().toString());		
+		//TODO: set session for remember user previous request url, see: CustomAuthenticationSuccessHandler.class		
+		request.getSession().setAttribute(prop.PREV_REQUEST_URL, request.getRequestURL().toString());
+		
 		response.sendRedirect(prop.LOGIN_URL);
 	}
 }
