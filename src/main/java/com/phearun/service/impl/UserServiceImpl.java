@@ -1,5 +1,7 @@
 package com.phearun.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +28,18 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean updateOnlineStatus(String clientId) {
-		return userRepository.updateOnlineStatus(clientId);
+	public List<User> findAllOnlineUsers() {
+		return userRepository.findAllOnlineUsers();
 	}
+
+	@Override
+	public boolean updateOnlineAndClientId(int userId, String clientId) {
+		return userRepository.updateOnlineAndClientIdByUserId(userId, clientId);
+	}
+
+	@Override
+	public boolean updateOfflineByClientId(String clientId) {
+		return userRepository.updateOfflineByClientId(clientId);
+	}	
+
 }

@@ -24,11 +24,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 
+		// TODO: get redirected url
 		String redirectUrl = (String) request.getSession().getAttribute(prop.PREV_REQUEST_URL);
-
-		// TODO:
 		if (redirectUrl != null) {
-			response.sendRedirect(redirectUrl); //filter chain
+			response.sendRedirect(redirectUrl); // filter chain
 			// System.out.println("after response, code below still work...");
 			return;
 		}
@@ -46,6 +45,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 				redirectUrl = prop.USER_SUCCESS_URL;
 			}
 		}
+
 		response.sendRedirect(redirectUrl);
 	}
 }
