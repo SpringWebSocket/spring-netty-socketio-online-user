@@ -47,4 +47,9 @@ public class SocketIOContoller {
 			this.server.getBroadcastOperations().sendEvent("online-users", users);
 		}
 	}
+	
+	@OnEvent("chat")
+	public void onEvent(SocketIOClient client, String message, AckRequest ack){
+		this.server.getBroadcastOperations().sendEvent("message", message);
+	}
 }
