@@ -59,7 +59,8 @@ public interface UserRepository {
 				+ "		email, "
 				+ "		password, "
 				+ "		status, "
-				+ "		online "
+				+ "		online,"
+				+ "		photo "
 				+ "	FROM "
 				+ "		tbuser "
 				+ "	WHERE "
@@ -96,11 +97,15 @@ public interface UserRepository {
 				+ "		id, "
 				+ "		username,"
 				+ "		email,"
-				+ "		client_id AS clientId"
+				+ "		client_id AS clientId,"
+				+ "		photo,"
+				+ "		online"
 				+ "	FROM"
 				+ "		tbuser"
-				+ "	WHERE"
-				+ "		online = true";
+				+ "	ORDER BY "
+				+ "		online DESC"
+				+ "	LIMIT 20";
+		
 		
 		String TOGGLE_ONLINE_STATUS = ""
 				+ "	UPDATE "

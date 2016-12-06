@@ -2,8 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Admin Page | Spring</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+		*{
+			margin:0 auto;
+			padding: 0;
+		}
+		.leftside{
+			position:absolute;
+			width: 250px;
+			height:100%;
+			background-color:#e9ebee;
+			right:0;
+			overflow-y:scroll;
+		}
+		.user{
+			padding:10px 10px 0px 10px;
+			border-bottom:1px solid #e9ebee;
+		}
+		img{
+			width:30px;
+			height:30px;
+		}
+		.online-status{
+			width:8px;
+			height:8px;
+			float:right;
+			top:12px;
+			position:relative;
+		}
+	</style>
 </head>
 <body>
+
+	<div class="container-fluid">
+		<div class="leftside" id="online-users"></div>
+	</div>
+
+
 	<h3>Hello, <span th:text="${#authentication.name}"></span></h3>
 	<span id="userId" th:text="${#authentication.principal.id}"></span>
 	<ul></ul>
@@ -15,7 +59,7 @@
     <script src="/static/js/jquery-1.7.2.min.js"></script>
     <script>
     
-	    var server = "http://192.168.43.192:3000";
+   		var server = "http://192.168.178.24:3000";
 		var socket =  io.connect(server);
 
     	socket.on('connect', function(){
@@ -24,18 +68,21 @@
 		});   
 		
 		socket.on('online-users', function(data){
-			console.log(data);
 			var html = ``;
 			data.forEach(function(user){
-				html += `<li>${user.username}</li>`;
+				var imageStatus = user.online==true?'/static/images/online-status.svg':'/static/images/offline-status.svg';
+				html += `<div class="user">
+							<img src="${user.photo}">
+							<span>${user.username}</span>
+							<img class="online-status" src="${imageStatus}">
+						</div>`;
 			});
-			$('ul').html(html);
+			$('#online-users').html(html);
 		});
 		
 		$('button').on('click', function(){
 			socket.emit('chat', $('#message').val());
 		});
-		
 		
 		socket.on('message', function(data){
 			console.log(data);

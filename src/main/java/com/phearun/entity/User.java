@@ -16,6 +16,7 @@ public class User implements UserDetails{
 	private boolean status;
 	private boolean online;
 	private String clientId;
+	private String photo;
 	private List<Role> roles;
 	
 	public int getId() {
@@ -88,9 +89,17 @@ public class User implements UserDetails{
 	public boolean isEnabled() {
 		return status;
 	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", status="
-				+ status + ", online=" + online + ", clientId=" + clientId + ", roles=" + roles + "]";
+				+ status + ", online=" + online + ", clientId=" + clientId + ", photo=" + photo + ", roles=" + roles
+				+ "]";
 	}
+	
 }
