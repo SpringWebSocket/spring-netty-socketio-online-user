@@ -2,16 +2,16 @@
 Navicat PGSQL Data Transfer
 
 Source Server         : Localhost
-Source Server Version : 90303
+Source Server Version : 90405
 Source Host           : localhost:5432
-Source Database       : dbSocket
+Source Database       : postgres
 Source Schema         : public
 
 Target Server Type    : PGSQL
-Target Server Version : 90303
+Target Server Version : 90405
 File Encoding         : 65001
 
-Date: 2016-11-22 22:41:06
+Date: 2016-12-06 17:39:18
 */
 
 
@@ -71,7 +71,8 @@ CREATE TABLE "tbuser" (
 "password" varchar COLLATE "default",
 "status" bool DEFAULT true,
 "online" bool DEFAULT false,
-"client_id" varchar COLLATE "default"
+"client_id" varchar COLLATE "default",
+"photo" varchar COLLATE "default"
 )
 WITH (OIDS=FALSE)
 
@@ -81,10 +82,10 @@ WITH (OIDS=FALSE)
 -- Records of tbuser
 -- ----------------------------
 BEGIN;
-INSERT INTO "tbuser" VALUES ('1', 'phearun', 'phearun@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 'f', '7a43c4ea-47a2-4f05-9d8d-0be994a66500');
-INSERT INTO "tbuser" VALUES ('2', 'dara', 'dara@gmail.com', '$2a$10$3dMNYJSQDlrvnrMWiM8DB.hEDVkwYc0KZpt7bM/eiKy0u3fh2RqY6', 't', 't', '4a59527b-ecff-409f-8ffb-01273db04cee');
-INSERT INTO "tbuser" VALUES ('3', 'daro', 'daro@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 'f', '60ea20e8-0462-434f-988d-545044c2b87f');
-INSERT INTO "tbuser" VALUES ('4', 'dareth', 'dareth@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 'f', 'e470e90a-dbbf-4fea-88eb-68fa3c4a1d63');
+INSERT INTO "tbuser" VALUES ('1', 'phearun', 'phearun@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 't', 'c6fbe9bf-9a25-4730-8585-8fa5fe042e5c', 'https://yt3.ggpht.com/-iIANNLyxM_4/AAAAAAAAAAI/AAAAAAAAAAA/sZ9aEljvl0I/s900-c-k-no-mo-rj-c0xffffff/photo.jpg');
+INSERT INTO "tbuser" VALUES ('2', 'dara', 'dara@gmail.com', '$2a$10$3dMNYJSQDlrvnrMWiM8DB.hEDVkwYc0KZpt7bM/eiKy0u3fh2RqY6', 't', 'f', '9041234c-0e5a-4156-970b-e57f25574fc9', 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAihAAAAJGUwYjY5NWRiLWFjNTctNDI4OC04NmYxLWZlMGIwNzI4MjA1Mw.jpg');
+INSERT INTO "tbuser" VALUES ('3', 'daro', 'daro@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 'f', '448dbe2a-8ce3-408b-9962-8acf0df671d8', 'https://yt3.ggpht.com/-iIANNLyxM_4/AAAAAAAAAAI/AAAAAAAAAAA/sZ9aEljvl0I/s900-c-k-no-mo-rj-c0xffffff/photo.jpg');
+INSERT INTO "tbuser" VALUES ('4', 'dareth', 'dareth@gmail.com', '$2a$10$Cdh1EGlTh2DxWADySWVxWeYyfswjv7hT3fbDoPuMVJdS0smKJwvii', 't', 'f', 'bb4aa1b6-6482-4327-a276-a8cdf7f5901a', 'https://yt3.ggpht.com/-iIANNLyxM_4/AAAAAAAAAAI/AAAAAAAAAAA/sZ9aEljvl0I/s900-c-k-no-mo-rj-c0xffffff/photo.jpg');
 COMMIT;
 
 -- ----------------------------
@@ -133,5 +134,5 @@ ALTER TABLE "tbuser_detail" ADD PRIMARY KEY ("user_id", "role_id");
 -- ----------------------------
 -- Foreign Key structure for table "tbuser_detail"
 -- ----------------------------
-ALTER TABLE "tbuser_detail" ADD FOREIGN KEY ("user_id") REFERENCES "tbuser" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "tbuser_detail" ADD FOREIGN KEY ("role_id") REFERENCES "tbrole" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "tbuser_detail" ADD FOREIGN KEY ("user_id") REFERENCES "tbuser" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
